@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +52,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'refocus.urls'
+
+
+TEMPLATE_DIRS = (
+    PROJECT_PATH + '/templates/',
+)
+
 
 TEMPLATES = [
     {
