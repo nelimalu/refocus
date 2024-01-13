@@ -57,8 +57,19 @@ ROOT_URLCONF = 'refocus.urls'
 TEMPLATE_DIRS = (
     PROJECT_PATH + '/templates/',
 )
+'''
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 
+MEDIA_URL = '/media/'
 
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_DIR, 'staticfiles'),
+)
+'''
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -124,6 +135,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = BASE_DIR / 'prod'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

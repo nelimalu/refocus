@@ -1,7 +1,9 @@
 from django.urls import path
+from django.views.generic.base import RedirectView
 
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("home/", views.index, name="index"),
+    path("", RedirectView.as_view(permanent=True, url='/home/')),
 ]
