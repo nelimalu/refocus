@@ -1,25 +1,34 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}INDEX PAGE{% endblock %}
+{% block title %}[ home ]{% endblock %}
 {% block style %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
 
 {% block content %}
-	<div>
-		<div class="title">
-			<div class="re">re:</div>
-			<div class="focus">focus</div>
-		</div>
-		<div class="tab-list">
-			<div class="tab-item">
-				> schedule
+	<div class="container">
+		<div class="content">
+			<div class="title">
+				<div class="re">re<span class="colon"></span></div>
+				<div class="focus">focus</div>
 			</div>
-			<div class="tab-item">
-				> tutorial
+			
+			{% if logged_in %}
+			<div class="tab-list">
+				<div class="tab-item">
+					→ schedule
+				</div>
+				<div class="tab-item">
+					→ tutorial
+				</div>
+				<div class="tab-item">
+					→ analytics
+				</div>
 			</div>
-			<div class="tab-item">
-				> analytics
-			</div>
+			{%e else %}
+				
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
+
+

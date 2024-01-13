@@ -1,3 +1,108 @@
+:root {
+	--skew-degrees: -10deg;
+	--skew-distance: 3%;
+}
+
+@font-face {
+  font-family: coolvetica;
+  src: url("../fonts/coolvetica.otf");
+}
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes italicize {
+    0% {
+		-webkit-transform: skewX(0deg);
+		-moz-transform: skewX(0deg);
+		-o-transform: skewX(0deg);
+		transform: skewX(0deg);
+		transform: translateX(1%);
+    }
+    50% {
+    	-webkit-transform: skewX(0deg);
+		-moz-transform: skewX(0deg);
+		-o-transform: skewX(0deg);
+		transform: skewX(0deg);
+		transform: translateX(1%);
+    }
+    100% {
+		-webkit-transform: skewX(var(--skew-degrees));
+		-moz-transform: skewX(var(--skew-degrees));
+		-o-transform: skewX(var(--skew-degrees));
+		transform: skewX(var(--skew-degrees)) translateX(var(--skew-distance));
+		/*transform: translateX(5%);*/
+
+    }
+  }
+
+* {
+	font-family: coolvetica;
+}
+
 .title {
 	display: flex;
+	font-size: 10vh;
+}
+
+.re {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	-webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+	font-family: times-new-roman;
+	font-weight: bold;
+
+}
+
+.re2 {
+	font-family: coolvetica;
+}
+
+.focus {
+	/*.font-family: coolveticaitalic;*/
+	animation: .8s ease-out 0s 1 italicize;
+	transform: skewX(var(--skew-degrees)) translateX(var(--skew-distance));
+	color: #202124;
+	font-family: times-new-roman;
+}
+
+.tab-list {
+	margin-left: auto;
+	margin-right: auto;
+	color: #202124;
+}
+
+.tab-item {
+	font-size: 2vh;
+    transition-duration: .3s;
+}
+
+.tab-item:hover {
+	transform: translate(5%);
+	cursor: pointer;
+}
+
+.content {
+	position: absolute;
+    top: 50%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+	margin: 0;
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	justify-content: center;
 }
