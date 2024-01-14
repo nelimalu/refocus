@@ -46,7 +46,7 @@
 						<a href="/analytics/" class="tab-item">→ analytics</a>
 					</div>
 					<div class="tab-item logout">
-						{% comment %}
+						
 						{% url 'account_logout' as action_url %}
 					    {% element form method="post" action=action_url no_visible_fields=True %}
 					        {% slot body %}
@@ -64,26 +64,17 @@
 					            {% endelement %}
 					        {% endslot %}
 					    {% endelement %}
-					    {% endcomment %}
-						<a href="{% url 'account_logout' %}" class="tab-item logout">→ logout</a>
+					    
+						<a href="{% url 'account_logout' %}" class="tab-item logout"></a>
 					</div>
 				</div>
 			{% else %}
 				<div class="tab-list">
 					<div class="tab-item">
-						{% comment %}
-						{% element form method="post" no_visible_fields=True %}
-					        {% slot actions %}
-					            {% csrf_token %}
-					            {% element button type="submit" id="login" %}
-					                → login w/ google
-					            {% endelement %}
-					        {% endslot %}
-					    {% endelement %}
-					    {% endcomment %}
-					    <a href="{% provider_login_url 'google' %}" class="tab-item">→ login w/ google</a>
+ 
+					    <a href="{% provider_login_url 'google' action='reauthenticate' %}" class="tab-item">→ login w/ google</a>
 					</div>
-			    </div>	
+			    </div>
 			{% endif %}
 		</div>
 	</div>

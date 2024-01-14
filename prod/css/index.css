@@ -1,6 +1,6 @@
 :root {
 	--skew-degrees: -10deg;
-	--skew-distance: 3%;
+	--skew-distance: 5%;
 }
 
 @font-face {
@@ -27,14 +27,14 @@
 		-moz-transform: skewX(0deg);
 		-o-transform: skewX(0deg);
 		transform: skewX(0deg);
-		transform: translateX(1%);
+		transform: translateX(2%);
     }
     50% {
     	-webkit-transform: skewX(0deg);
 		-moz-transform: skewX(0deg);
 		-o-transform: skewX(0deg);
 		transform: skewX(0deg);
-		transform: translateX(1%);
+		transform: translateX(2%);
     }
     100% {
 		-webkit-transform: skewX(var(--skew-degrees));
@@ -56,6 +56,22 @@
 }
 
 .re {
+	color: #202124;
+	
+	font-family: coolvetica;
+	/*line-height: 1.1;*/
+
+}
+
+.colon {
+	font-family: times-new-roman;
+	font-weight: bold;
+}
+
+.focus {
+	/*.font-family: coolveticaitalic;*/
+	/*animation: .8s ease-out 0s 1 italicize;
+	transform: skewX(var(--skew-degrees)) translateX(var(--skew-distance));*/
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
@@ -63,36 +79,26 @@
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
-	font-family: times-new-roman;
-	font-weight: bold;
-
-}
-
-.re2 {
-	font-family: coolvetica;
-}
-
-.focus {
-	/*.font-family: coolveticaitalic;*/
-	animation: .8s ease-out 0s 1 italicize;
-	transform: skewX(var(--skew-degrees)) translateX(var(--skew-distance));
 	color: #202124;
-	font-family: times-new-roman;
+	font-family: coolvetica;
+
 }
 
 .tab-list {
 	margin-left: auto;
 	margin-right: auto;
-	color: #202124;
+
 }
 
 .tab-item {
 	font-size: 2vh;
     transition-duration: .3s;
+    color: #202124;
+	text-decoration: none;
 }
 
 .tab-item:hover {
-	transform: translate(5%);
+	transform: translateX(5%);
 	cursor: pointer;
 }
 
@@ -105,4 +111,37 @@
 	display: grid;
 	grid-template-rows: 1fr 1fr;
 	justify-content: center;
+}
+
+.login {
+	color: #202124;
+
+}
+
+#logout {
+	/*border: 2px solid red;
+  	border-radius: 5px;*/
+  	color: #e3747d;
+  	margin: 0;
+  	padding: 0;
+  	font-size: 2vh;
+  	background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+#login {
+	color: #202124;
+	margin: 0;
+	padding: 0;
+	font-size: 2vh;
+	background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+   outline: none;
 }

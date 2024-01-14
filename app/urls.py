@@ -11,4 +11,9 @@ urlpatterns = [
     path('tutorial/', views.tutorial, name="tutorial"),
     path('analytics/', views.analytics, name="analytics"),
     path('get_user/', views.get_user, name="get_user"),
+
+    path('authorize/', views.authorize, name="authorize"),
+    path('oauth2callback/', views.oauth2callback, name="oauth2callback"),
+    path('test_api_request/', views.test_api_request, name="test_api_request"),
+
 ]
