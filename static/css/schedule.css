@@ -2,12 +2,21 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.ec-container {
+    position: relative;
+}
+
+.ec-event-body {
+    padding: 10px;
+}
+
 .ec {
-    width: 75vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 70vw;
     height: 80vh;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: auto;
 }
 
 #modalContainer {

@@ -3,13 +3,18 @@
 
 {% block title %}[ schedule ]{% endblock %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/schedule.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@2.6.0/event-calendar.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@event-calendar/build@2.6.0/event-calendar.min.js"></script>
 {% endblock %}
 
 {% block content %}
-    <div id="ec"></div>
-    
-    <script src="schedule.js"></script>
+    <div class=".ec-container">
+        <div id="ec"></div>
+    </div>
+
+
+    <script src="{% static 'js/schedule.js' %}"></script>
     
     <div id="modalContainer" style="display: none;">
         <div id="modalBox"></div>
