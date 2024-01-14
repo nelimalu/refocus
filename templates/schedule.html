@@ -2,8 +2,16 @@
 {% load socialaccount %}
 
 {% block title %}[ schedule ]{% endblock %}
-{% block style %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 
 {% block content %}
-
+    <div id="ec"></div>
+    
+    <script src="schedule.js"></script>
+    
+    <div id="modalContainer" style="display: none;">
+        <div id="modalBox"></div>
+    </div>
 {% endblock %}
