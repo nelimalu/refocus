@@ -2,8 +2,24 @@
 {% load socialaccount %}
 
 {% block title %}[ analytics ]{% endblock %}
-{% block style %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
+{% block style %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
 
 {% block content %}
+    <canvas id="graph" width="400" height="200"></canvas>
 
+    <select id="week-or-month" name="options">
+        <option value="weekly_option">Weekly</option>
+        <option value="monthly_option">Monthly</option>
+    </select>
+
+    <br/><br/>
+
+    <button id="prevDate"> < </button>
+    <text id="displayed_range">Jan., Sunday the 14th, 2024 - Jan., Saturday the 20th, 2024</text>
+    <button id="nextDate">></button>
+
+    <script src="../static/js/graph.js"></script>
 {% endblock %}
