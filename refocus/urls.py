@@ -23,7 +23,6 @@ urlpatterns = [
     path("", include("app.urls")),
 
 
-
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view())
 ]

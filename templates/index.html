@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% load socialaccount %}
+{% load i18n %}
+{% load allauth %}
 
 {% block title %}[ home ]{% endblock %}
 {% block style %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
@@ -14,6 +16,25 @@
 			</div>
 			
 			{% if user.is_authenticated %}
+				<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+				<script>
+					
+					    let a = new FormData();
+					    a.append("data", {{ user.socialaccount_set.all.0.uid }});
+
+					    $.ajax({
+					      type: "POST",
+					      url: {% url 'get_user' %},
+					      data: a,
+					      dataType: "json",
+					      processData: false,
+					      success: function(result){
+					        console.log("sent user id")
+					      }
+					    });
+
+				</script>
+
 				<div class="tab-list">
 					<div class="tab-item">
 						<a href="/schedule/" class="tab-item">→ schedule</a>
@@ -25,12 +46,41 @@
 						<a href="/analytics/" class="tab-item">→ analytics</a>
 					</div>
 					<div class="tab-item logout">
-						<a href="/accounts/logout/" class="tab-item logout">→ logout</a>
+						{% comment %}
+						{% url 'account_logout' as action_url %}
+					    {% element form method="post" action=action_url no_visible_fields=True %}
+					        {% slot body %}
+					            {% csrf_token %}
+					            {% if redirect_field_value %}
+
+					                <input type="hidden"
+					                       name="{{ redirect_field_name }}"
+					                       value="{{ redirect_field_value }}" />
+					            {% endif %}
+					        {% endslot %}
+					        {% slot actions %}
+					            {% element button type="submit" id="logout" %}
+					                {% trans '→ logout' %}
+					            {% endelement %}
+					        {% endslot %}
+					    {% endelement %}
+					    {% endcomment %}
+						<a href="{% url 'account_logout' %}" class="tab-item logout">→ logout</a>
 					</div>
 				</div>
 			{% else %}
 				<div class="tab-list">
 					<div class="tab-item">
+						{% comment %}
+						{% element form method="post" no_visible_fields=True %}
+					        {% slot actions %}
+					            {% csrf_token %}
+					            {% element button type="submit" id="login" %}
+					                → login w/ google
+					            {% endelement %}
+					        {% endslot %}
+					    {% endelement %}
+					    {% endcomment %}
 					    <a href="{% provider_login_url 'google' %}" class="tab-item">→ login w/ google</a>
 					</div>
 			    </div>	
