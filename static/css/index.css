@@ -87,16 +87,18 @@
 .tab-list {
 	margin-left: auto;
 	margin-right: auto;
-	color: #202124;
+
 }
 
 .tab-item {
 	font-size: 2vh;
     transition-duration: .3s;
+    color: #202124;
+	text-decoration: none;
 }
 
 .tab-item:hover {
-	transform: translate(5%);
+	transform: translateX(5%);
 	cursor: pointer;
 }
 
@@ -109,4 +111,15 @@
 	display: grid;
 	grid-template-rows: 1fr 1fr;
 	justify-content: center;
+}
+
+.login {
+	color: #202124;
+
+}
+
+.logout {
+	/*border: 2px solid red;
+  	border-radius: 5px;*/
+  	color: #e3747d;
 }

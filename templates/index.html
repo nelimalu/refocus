@@ -13,27 +13,27 @@
 				<div class="focus">focus</div>
 			</div>
 			
-			{% if logged_in %}
-			<div class="tab-list">
-				<div class="tab-item">
-					→ schedule
+			{% if user.is_authenticated %}
+				<div class="tab-list">
+					<div class="tab-item">
+						<a href="/schedule/" class="tab-item">→ schedule</a>
+					</div>
+					<div class="tab-item">
+						<a href="/tutorial/" class="tab-item">→ tutorial</a>
+					</div>
+					<div class="tab-item">
+						<a href="/analytics/" class="tab-item">→ analytics</a>
+					</div>
+					<div class="tab-item logout">
+						<a href="/accounts/logout/" class="tab-item logout">→ logout</a>
+					</div>
 				</div>
-				<div class="tab-item">
-					→ tutorial
-				</div>
-				<div class="tab-item">
-					→ analytics
-				</div>
-			</div>
 			{% else %}
-			    {% if user.is_authenticated %}
-				    <div>
-				    	<p>Welcome. You are logged in as {{user.username}} </p>
-				    </div>
-			    {% else %}
-			    	hey
-			    	<a href="{% provider_login_url 'google' %}">Login with Google</a>
-			    {% endif %}
+				<div class="tab-list">
+					<div class="tab-item">
+					    <a href="{% provider_login_url 'google' %}" class="tab-item">→ login w/ google</a>
+					</div>
+			    </div>	
 			{% endif %}
 		</div>
 	</div>

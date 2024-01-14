@@ -3,6 +3,14 @@ from django.http import HttpResponse
 
 
 def index(request):
-	context = {"logged_in": False}
-	return render(request, "index.html", context)
+	return render(request, "index.html", {})
+
+def schedule(request):
+	return render(request, "schedule.html", {})
+
+def tutorial(request):
+	return render(request, "tutorial.html", {})
+
+def analytics(request):
+	return render(request, "analytics.html", {})
 
