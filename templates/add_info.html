@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% load socialaccount %}
+
+{% block title %}[ add info ]{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/add_info.css' %}">
+{% endblock %}
+
+
+{% block content %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		
+		function add_course() {
+			console.log("AAA")
+
+			let a = new FormData();
+			a.append("type", "add_course")
+			a.append("userdata", {{ user.socialaccount_set.all.0.uid }})
+			a.append(course, document.getElementById('add-course').value)
+			
+
+			$.ajax({
+			  type: "POST",
+			  url: {% url 'add_course' %},
+			  data: a,
+			  dataType: "json",
+			  processData: false,
+			  success: function(result){
+			    console.log("sent user id")
+			  }
+			});
+		}
+	</script>
+	{% if user.is_authenticated %}
+
+	</script>
+		
+		<form action="/add_course/" method="POST">
+			{% csrf_token %}
+	        <label target="add-course">Add a Course Code:</label>
+	        <input id="add-course" type="text" required>
+	        <button onclick="add_course()">Submit</button>
+	    </form>
+	    <br>
+
+	    <form method="POST">
+	    	{% csrf_token %}
+	        <label target="input-grade">Input a Grade:</label>
+	        <input id="input-grade" type="text" required>
+	        
+	        <label target="choose-course">Select the Course:</label>
+	        <select id="choose-course" required>
+	        	{% for course in courses %}
+	            	<option>{{course}}</option>
+	            {% endfor %}
+	        </select>
+
+	        <label target="datetime">Select the Date:</label>
+	        <input type="date" id="datetime" required>
+
+	        <button>Submit</button>
+	    </form>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,3 +1,5 @@
+
+
 class Course {
     constructor(name, bgColor) {
         this.name = name;
@@ -210,11 +212,14 @@ function closeModal() {
 }
 
 let idCounter = 0
+
 let courses = [
     new Course("SCH4UP", "#07f032"), 
     new Course("MCR3UP", "#1d42c4"), 
     new Course("ENG3UP", "#fce33d"), 
-    new Course("FSF3UP", "#fc433d")];
+    new Course("FSF3UP", "#fc433d")
+];
+
 let ec = new EventCalendar(document.getElementById('ec'), {
     view: 'timeGridWeek',
     allDaySlot: false,
@@ -239,3 +244,7 @@ let ec = new EventCalendar(document.getElementById('ec'), {
     },
     events: []
 });
+
+module.exports = {
+    courses
+}

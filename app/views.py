@@ -11,6 +11,7 @@ import googleapiclient.discovery
 import google_auth_oauthlib.flow
 from django.shortcuts import redirect
 from django.urls import reverse
+import time
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__) + os.path.dirname(".."))
 with open(os.path.join(PROJECT_PATH, 'secrets.json')) as file:
@@ -33,6 +34,36 @@ def tutorial(request):
 
 def analytics(request):
 	return render(request, "analytics.html", {})
+
+def add_info(request):
+	send_data = {}
+
+	if request.user.is_authenticated:
+		try:
+			# Make sure to find the file.db in the script directory
+			BASE_DIR = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
+			db_path = os.path.join(BASE_DIR, "db.sqlite3")
+			# print(BASE_DIR)
+			conn = sqlite3.connect(db_path)
+
+			cur = conn.cursor()
+			cur.execute('SELECT * FROM socialaccount_socialaccount')
+
+
+			# Print everything from a table
+			rows = cur.fetchall()
+			for row in rows:
+				# print(json.loads(row[6])['email'], request.user.email)
+				if json.loads(row[6])['email'] == request.user.email:
+					info = json.loads(row[6])
+					if "courses" in info:
+						send_data = info['courses']
+						break
+
+		except sqlite3.Error as error:
+			print("Failed to read data from sqlite table", error)
+
+	return render(request, "add_info.html", {"courses": send_data})#send_data)
 
 @csrf_exempt
 def test_api_request(request):
@@ -103,6 +134,23 @@ def get_user(request):
 		# fetch_database(uid)
 	return HttpResponse("thanks!")
 
+@csrf_exempt
+def add_mark(request):
+	if request.method == "POST":
+		for i in request.body.decode().split("\n"):
+			if len(i) > 0 and i[0].isnumeric():
+				fetch_database(i)
+		# fetch_database(uid)
+	return HttpResponse("thanks!")
+
+@csrf_exempt
+def add_course(request):
+	print("HI")
+	if request.method == "POST":
+		print(request.POST['data'])
+
+	return redirect("/add_info/")
+
 
 def fetch_database(uid):
 	try:
@@ -119,7 +167,7 @@ def fetch_database(uid):
 		rows = cur.fetchall()
 		for row in rows:
 			if row[2][:10] == uid[:10]:
-				pass  # row is user data
+				return row
 		# print(rows)
 
 	except sqlite3.Error as error:
