@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load socialaccount %}
 
 {% block title %}[ home ]{% endblock %}
 {% block style %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
@@ -24,8 +25,15 @@
 					→ analytics
 				</div>
 			</div>
-			{%e else %}
-				
+			{% else %}
+			    {% if user.is_authenticated %}
+				    <div>
+				    	<p>Welcome. You are logged in as {{user.username}} </p>
+				    </div>
+			    {% else %}
+			    	hey
+			    	<a href="{% provider_login_url 'google' %}">Login with Google</a>
+			    {% endif %}
 			{% endif %}
 		</div>
 	</div>
